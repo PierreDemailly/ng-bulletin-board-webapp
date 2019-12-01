@@ -1,0 +1,121 @@
+.category-header {
+  padding: 20px 0;
+  color: rgb(0, 0, 0);
+  display: flex;
+  font-size: 16px;
+
+  .active-category {
+    display: inline-block;
+    padding: 7px 10px;
+    border: 1px solid #3062a3;
+    background: #fff;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    cursor: default;
+
+    .icon {
+      float: right;
+      width: 15px;
+      height: 15px;
+      position: relative;
+      bottom: 3px;
+      cursor: pointer;
+    }
+
+  }
+
+  .category-filter {
+    display: inline-flex;
+
+    button:not(.new-topic) {
+      padding: 8px 10px;
+      color: #fff;
+      background: rgb(201, 86, 86);
+      font-size: 15px;
+      border:0;
+      margin-left: 8px;
+      cursor: pointer;
+      font-family: Helvetica, Arial, sans-serif;
+
+      &:hover {
+        background: rgb(201, 86, 86);
+      }
+
+      &.active, &.active:hover {
+        background: rgb(161, 51, 51);
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .choose-category {
+    width: 320px;
+    cursor: default;
+    position: absolute;
+    background: #3062a3;
+    color: #fff;
+    top: 68px;
+
+    .category {
+      border-left: 1px dashed rgba(161, 159, 159, 0.4);
+      padding: 10px;
+
+      .category-name {
+        font-weight: bold;
+
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+
+      .category-description {
+        font-style: italic;
+        font-size: 90%;
+      }
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+.new-topic {
+  float:left;
+  padding: 4px 10px;
+  background: rgb(8, 7, 53);
+  color: #fff;
+  margin-left: 10px;
+  border: 0;
+
+  &:active {
+    padding: 3px 9px;
+    margin: 1px;
+    margin-left:11px;
+  }
+}
+
+
+.card {
+  margin-bottom: 10px;
+}
+
+@media screen and(max-width: 450px) {
+  .category-header {
+    flex-direction: column;
+  }
+  .active-category {
+    flex: 0 0 100%;
+  }
+  .category-filter {
+    margin-top: 10px;
+
+    button:first-of-type {
+      margin-left:0 !important;
+    }
+  }
+  .new-topic {
+    float:right;
+  }
+}

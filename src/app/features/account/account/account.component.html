@@ -1,0 +1,42 @@
+<mat-card *ngIf="user">
+
+  <mat-card-title>
+    Informations utilisateur
+
+    <button *ngIf="currentUser && user.id === currentUser.id"
+            mat-button mat-icon-button matTooltip="Modifier mon profil"
+            class="align-right"
+            (click)="editProfile()">
+      <mat-icon>edit</mat-icon>
+    </button>
+
+  </mat-card-title>
+
+  <mat-card-content>
+
+    <mat-list>
+
+      <mat-list-item>
+        <img mat-list-icon src="http://localhost:3000/avatars/{{user.avatar}}">
+        <p mat-line>{{ user.pseudo }}</p>
+        <p mat-line *ngIf="currentUser && user.id === currentUser.id">{{ user.email }}</p>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon mat-list-icon>forum</mat-icon>
+        <p mat-line>{{ user.post_count }} messages postés</p>
+        <p mat-line><strong>Signature dans les forums:</strong></p>
+        <p mat-line>{{ user.signature }}</p>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon mat-list-icon>alarm</mat-icon>
+        <p mat-line><strong>Inscrit le:</strong> {{ user.createdAt | date: 'medium' }}</p>
+        <p mat-line><strong>Dernier passage:</strong> {{ user.lastActivity | date: 'medium' }}</p>
+      </mat-list-item>
+
+    </mat-list>
+
+  </mat-card-content>
+
+</mat-card>

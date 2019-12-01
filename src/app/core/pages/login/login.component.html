@@ -1,0 +1,36 @@
+<mat-card class="mat-card-form">
+
+  <mat-card-title>Connexion</mat-card-title>
+
+  <mat-card-content>
+
+    <form [formGroup]="form" (ngSubmit)="login()" id="loginForm">
+
+      <mat-form-field class="full-width">
+        <input matInput type="email" placeholder="Email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput type="password" placeholder="Password" formControlName="password">
+      </mat-form-field>
+
+      <div class="captcha">
+        <ngx-recaptcha2 #captchaElem siteKey="6LfEVroUAAAAAHxhYOsdAdDRo5M-BXhedE7XqINv" [useGlobalDomain]="false" formControlName="recaptcha">
+        </ngx-recaptcha2>
+      </div>
+
+    </form>
+
+  </mat-card-content>
+
+  <mat-card-actions class="login-actions">
+
+    <button mat-raised-button form="loginForm" class="login-btn">Connexion</button>
+    <a routerLink="/register" class="register-link">Pas encore inscrit?</a>
+    <button mat-stroked-button  (click)="back()" class="back-btn">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+
+  </mat-card-actions>
+
+</mat-card>

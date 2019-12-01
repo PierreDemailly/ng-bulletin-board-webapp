@@ -1,0 +1,41 @@
+<div class="survey-container">
+
+  <div class="survey">
+    Sondage <mat-icon>arrow_drop_down</mat-icon>
+    <button *ngIf="!userHasVoted && user" (click)="switch()" class="switch-btn">
+      {{ displaying === 'vote' ? 'Voir les resultats' : 'Retour au vote' }}
+    </button>
+  </div>
+
+  <div class="title">{{ topic.survey.title }}</div>
+
+  <ul *ngIf="!userHasVoted && displaying === 'vote' && voteAllowed">
+    <li *ngFor="let answer of topic.survey.answers" (click)="emitAnswer(answer)">
+      <mat-icon>arrow_right</mat-icon>{{ answer.answer }}
+    </li>
+  </ul>
+
+  <ng-container *ngIf="userHasVoted || displaying === 'result' || !voteAllowed">
+
+    <div *ngFor="let answer of topic.survey.answers" class="flex">
+
+      <div class="align-right">
+        {{ (answer.id | map: getResult.bind(this)) ? (((answer.id | map: getResult.bind(this)).count / result.count * 100) | round) : 0 }}%
+      </div>
+
+      <div class="centered">
+        <mat-progress-bar
+          color="warn"
+          class="progress-bar"
+          [value]="(answer.id | map: getResult.bind(this)) ? ((answer.id | map: getResult.bind(this)).count / result.count * 100) : 0">
+        </mat-progress-bar>
+        {{ answer.answer }}
+      </div>
+
+    </div>
+
+  </ng-container>
+
+  <span class="count">{{ result.count }} {{ result.count > 1 ? 'votes' : 'vote' }}</span>
+
+</div>

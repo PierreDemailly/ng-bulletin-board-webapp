@@ -1,0 +1,20 @@
+.table {
+  width: 100%;
+
+  .align-right {
+    width: 60px;
+    text-align: center;
+  }
+}
+
+.parent {
+  font-size: 80%;
+  color: rgb(83, 71, 71);
+}
+
+.loading-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

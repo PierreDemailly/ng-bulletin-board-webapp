@@ -1,0 +1,25 @@
+<div class="topic-header" *ngIf="post">
+
+  <div class="title">
+    <strong>Sujet: </strong>{{ post.title }}
+  </div>
+
+  <div class="actions">
+
+    <button (click)="emitReply()" *ngIf="allowedReply">
+      Répondre
+    </button>
+
+    <button (click)="emitReturnToTopics()">
+      Liste des sujets
+    </button>
+
+    <span class="align-right">
+      <button (click)="emitRefresh()">
+        Actualiser
+      </button>
+    </span>
+
+  </div>
+
+</div>

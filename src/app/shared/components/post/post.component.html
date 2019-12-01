@@ -1,0 +1,82 @@
+<div class="post" id="{{post.id}}" *ngIf="post?.user?.id">
+  <div class="post-user">
+    <div class="avatar">
+
+      <img alt="Avatar de l'utilisateur" *ngIf="!(post.user | checkBlacklist: currentUser)" src="http://localhost:3000/avatars/{{post.user.avatar}}">
+      <img alt="Avatar de l'utilisateur" *ngIf="(post.user | checkBlacklist: currentUser)" src="http://localhost:3000/avatars/default.png">
+    </div>
+
+    <div class="user">
+      <!-- normal users -->
+      <ng-container *ngIf="!(post.user | checkBlacklist: currentUser)">
+        <div class="user-name" (click)="redirectToAuthorProfilePage(post.user.id)">
+          <span class="link">{{post.user.pseudo}}</span>
+        </div>
+        <span class="post-created">
+          {{ post.created_at | date: 'medium' }}
+        </span>
+      </ng-container>
+      <!-- blacklisted users -->
+      <ng-container *ngIf="(post.user | checkBlacklist: currentUser)">
+        <div class="user-name">
+          Utilisateur blacklisté
+        </div>
+        <span class="post-created">
+          {{ post.created_at | date: 'medium' }}
+        </span>
+      </ng-container>
+
+    </div>
+
+    <!-- logged in user -->
+    <div class="user-tools" *ngIf="isAuth">
+      <mat-icon class="quote-icon" (click)="emitQuote(post)" matTooltip="Citer le post">
+        format_quote
+      </mat-icon>
+      <mat-icon *ngIf="'' | map: allowedToEdit.bind(this)" class="edit-icon" matTooltip="Modifier" (click)="editPost()">
+        edit</mat-icon>
+      <ng-container *ngIf="!(post.user | checkBlacklist: currentUser)">
+        <mat-icon class="blacklist-icon" *ngIf="currentUser && currentUser.id !== post.user.id" (click)="emitBlacklist(post)" matTooltip="Blacklister l'auteur">
+          visibility_off
+        </mat-icon>
+      </ng-container>
+      <ng-container *ngIf="post.user | checkBlacklist: currentUser">
+        <mat-icon class="blacklist-icon" *ngIf="currentUser.id !== post.user.id" (click)="emitUnblacklist(post)" matTooltip="Retirer de la blacklist">
+          visibility
+        </mat-icon>
+      </ng-container>
+      <mat-icon class="signal-icon" matTooltip="Signaler le post" *ngIf="post.user.id !== currentUser.id">
+        priority_high
+      </mat-icon>
+    </div>
+
+  </div>
+  <div class="post-content"
+       *ngIf="!editingPost; else Editing"
+       [innerHTML]="!(post.user | checkBlacklist: currentUser) ? post.content : 'Vous ne pouvez pas voir ce contenu car vous avez bloqué l\'auteur'">
+  </div>
+
+  <ng-template #Editing>
+    <div class="editing">
+      <form [formGroup]="form" (ngSubmit)="emitEdit()" class="form">
+        <p-editor formControlName="content" [style]="{'height':'120px'}" maximizable="true">
+          <p-header>
+            <span class="ql-formats">
+              <button class="ql-bold" aria-label="Bold"></button>
+              <button class="ql-italic" aria-label="Italic"></button>
+              <button class="ql-underline" aria-label="Underline"></button>
+              <button class="ql-strike" aria-label="Strike"></button>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-blockquote" aria-label="Blockquote"></button>
+              <button class="ql-code-block" aria-label="Code-block"></button>
+            </span>
+          </p-header>
+        </p-editor>
+        <button type="submit" class="submit-btn">Valider</button>
+        <span (click)="editingPost = false" class="cancel-btn">Annuler</span>
+      </form>
+    </div>
+  </ng-template>
+
+</div>

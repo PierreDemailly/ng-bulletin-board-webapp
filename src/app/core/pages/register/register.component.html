@@ -1,0 +1,40 @@
+<mat-card class="mat-card-form">
+
+  <mat-card-title>Register</mat-card-title>
+
+  <mat-card-content>
+
+    <form [formGroup]="form" (ngSubmit)="register()" id="loginForm">
+
+      <mat-form-field class="full-width">
+        <input matInput type="email" placeholder="Email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Pseudo" formControlName="pseudo">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput type="password" placeholder="Password" formControlName="password" autocomplete="new-password">
+      </mat-form-field>
+
+      <div class="captcha">
+        <ngx-recaptcha2 #captchaElem siteKey="6LfEVroUAAAAAHxhYOsdAdDRo5M-BXhedE7XqINv" [useGlobalDomain]="false" formControlName="recaptcha">
+        </ngx-recaptcha2>
+      </div>
+
+    </form>
+
+  </mat-card-content>
+
+  <mat-card-actions class="register-actions">
+    
+    <button mat-button form="loginForm" class="register-btn">Valider</button>
+    <a class="login-link" routerLink="/login" color="primary">Déjà un compte ?</a>
+    <button mat-button class="back-btn" (click)="back()">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+
+  </mat-card-actions>
+
+</mat-card>

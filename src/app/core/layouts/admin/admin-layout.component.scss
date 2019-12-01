@@ -1,0 +1,42 @@
+.sidenav-nav {
+  width: 50px;
+  text-align: center;
+
+  .list {
+
+    span {
+      display: none;
+    }
+  }
+
+  .icon {
+    color: rgb(12, 5, 68);
+    position: relative;
+    right: 3px;
+  }
+
+  &:hover {
+    width: 200px;
+
+    .icon {
+      margin-right: 10px;
+    }
+
+    .list {
+      margin-top: 0;
+
+      span, h1 {
+        display: block;
+      }
+    }
+
+    /** https://www.w3.org/TR/selectors-3/#general-sibling-combinators */
+    ~ .sidenav-content {
+      padding-left: 160px;
+    }
+  }
+}
+
+.sidenav-content {
+  padding:10px;
+}

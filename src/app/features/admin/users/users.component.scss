@@ -1,0 +1,19 @@
+.table {
+  width: 100%;
+
+  .align-right {
+    width: 144px;
+    text-align: center;
+  }
+}
+
+.flex { display: flex; }
+.ml {
+  margin-left: 30px;
+}
+
+.loading-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

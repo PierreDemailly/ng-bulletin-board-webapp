@@ -1,0 +1,61 @@
+<mat-card>
+  <mat-card-title>Liste des catégories</mat-card-title>
+
+  <mat-card-content>
+
+    <button mat-raised-button color="primary" [routerLink]="['./new']">Créer une catégorie</button>
+
+    <table mat-table *ngIf="categories" [dataSource]="categories" class="table">
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>
+          Nom
+        </th>
+        <td mat-cell *matCellDef="let category" (click)="redirectUser(topic.user)">
+          {{ category.name }}
+          <ng-container *ngIf="category.parent">
+            <br>
+            <span class="parent">parent: {{ category.parent.name }}</span>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>
+          Description
+        </th>
+        <td mat-cell *matCellDef="let category" (click)="redirectTopic(topic)">
+          {{ category.description }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="align-right">
+          Actions
+        </th>
+        <td mat-cell *matCellDef="let category" class="align-right">
+          <button mat-icon-button matTooltip="Modifier" matTooltipPosition="before" (click)="edit(category)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Supprimer" matTooltipPosition="before" (click)="delete(category)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [hidden]="loading">
+
+    </table>
+
+    <mat-card *ngIf="!loading && categories.length === 0" class="loading-card">
+      Aucune catégorie n'existe, créez en une.
+    </mat-card>
+
+    <mat-card *ngIf="loading" class="loading-card">
+      <mat-spinner [diameter]="35"></mat-spinner>
+    </mat-card>
+
+  </mat-card-content>
+</mat-card>
+

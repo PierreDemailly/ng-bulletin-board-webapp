@@ -1,0 +1,64 @@
+<mat-toolbar color="primary" class="header">
+
+  <button mat-icon-button (click)="toggleSidenav()">
+    <mat-icon matTooltip="Menu">
+      {{ sidenavOpened ? 'close' : 'menu' }}
+    </mat-icon>
+  </button>
+
+  <h1 [routerLink]="['']">{{sitename}}</h1>
+
+  <ng-container *ngIf="isLoggedIn && user; else: guest">
+
+    <span>
+
+      <button mat-icon-button [matMenuTriggerFor]="loggedAccount" class="btn">
+        <img src="http://localhost:3000/avatars/{{user.avatar}}" class="avatar">{{ user.pseudo }}
+      </button>
+
+      <mat-menu #loggedAccount="matMenu" [overlapTrigger]="false">
+
+        <button mat-menu-item [routerLink]="['/account/', user.id]">
+            <mat-icon>supervisor_account</mat-icon>
+            <span>Mon profil</span>
+        </button>
+
+        <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Déconnexion</span>
+        </button>
+
+      </mat-menu>
+
+    </span>
+
+    <span *ngIf="user.rank > 1" class="admin-link">
+      <a routerLink="/admin" *ngIf="!currentPage.includes('/admin')">Admin</a>
+      <a routerLink="/" *ngIf="currentPage.includes('/admin')">Retour au site</a>
+    </span>
+
+  </ng-container>
+
+  <ng-template #guest>
+
+      <button mat-icon-button [matMenuTriggerFor]="account">
+          <mat-icon>account_circle</mat-icon> Mon compte
+      </button>
+
+      <mat-menu #account="matMenu" [overlapTrigger]="false">
+
+          <button mat-menu-item (click)="login()">
+              <mat-icon>supervisor_account</mat-icon>
+              <span>Se connecter</span>
+          </button>
+
+          <button mat-menu-item (click)="register()">
+              <mat-icon>assignment_ind</mat-icon>
+              <span>Créer un compte</span>
+          </button>
+
+      </mat-menu>
+
+  </ng-template>
+
+</mat-toolbar>

@@ -1,0 +1,29 @@
+<form [formGroup]="form" class="survey">
+
+  <input type="text"
+         placeholder="Question du sondage"
+         formControlName="title"
+         class="input">
+
+  <div formArrayName="answers"
+       *ngFor="let answer of form.get('answers').controls; let i = index">
+
+    <ng-container [formGroupName]="i">
+      <input type="text"
+              placeholder="Réponse {{ i + 1 }}"
+              formControlName="answer"
+              class="input">
+      <mat-icon *ngIf="i > 1" (click)="removeAnswer(i)" class="close-icon">
+        close
+      </mat-icon>
+    </ng-container>
+
+  </div>
+
+  <div *ngIf="form.controls.answers.value.length < 10"
+        (click)="addAnswer()"
+        class="add-answer">
+    <mat-icon class="add-icon">add</mat-icon> Ajouter une réponse
+  </div>
+
+</form>

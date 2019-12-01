@@ -1,0 +1,19 @@
+.sidenav {
+  max-width: 300px;
+}
+
+.content {
+    height:calc(100vh - 64px);
+    overflow-y: auto;
+    display:flex;
+    flex-direction: column;
+    background: #e0e6e6;
+    color:rgb(31, 28, 28);
+    padding: 10px;
+    padding-bottom: 0;
+    box-sizing: border-box;
+}
+
+.footer {
+  margin: auto -10px 0px -10px;
+}

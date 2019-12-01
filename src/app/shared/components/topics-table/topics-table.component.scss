@@ -1,0 +1,35 @@
+.topics-data-table {
+  width: 100%;
+}
+
+.user-cell {
+  width: 150px;
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(201, 86, 86);
+  }
+}
+
+.title-cell {
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 10px;
+
+  &:hover {
+    color: rgb(201, 86, 86);
+  }
+}
+
+.align-right {
+  width: 60px;
+  text-align: center;
+}
+
+.loading-card {
+  padding-top: 8px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

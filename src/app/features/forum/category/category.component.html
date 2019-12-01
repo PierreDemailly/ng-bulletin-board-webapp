@@ -1,0 +1,58 @@
+<mat-card class="mb main">
+
+  <mat-card-title>
+
+    <app-category-header [activeCategory]="category"
+                         [allowedToReply]="isAuth"
+                         (change)="changeCategory($event)"
+                         (filterChange)="getTopics($event)"
+                         (createTopic)="handleCreateTopic()">
+    </app-category-header>
+
+  </mat-card-title>
+
+  <mat-card-content>
+
+    <app-topics-table [topics]="topics"
+                      [count]="count"
+                      (paginationChange)="getTopics(
+                        topicsFilter.filter,
+                        $event.page,
+                        $event.limit
+                      )">
+    </app-topics-table>
+
+  </mat-card-content>
+
+</mat-card>
+
+<mat-card *ngIf="category && category.children.length > 0" class="category-descendants mb">
+
+  <mat-card-title>Sous catégories</mat-card-title>
+
+  <mat-card-content>
+
+    <mat-list>
+      <mat-list-item *ngFor="let child of category.children" (click)="changeCategory(child)" class="item">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <h4 mat-line> {{ child.name }}</h4>
+        <p mat-line class="category-description">{{ child.description }}</p>
+      </mat-list-item>
+    </mat-list>
+
+  </mat-card-content>
+
+</mat-card>
+
+<mat-card class="main" #formTopic>
+
+  <mat-card-title>Nouveau sujet</mat-card-title>
+
+  <mat-card-content>
+
+    <app-new-topic-form *ngIf="isAuth" (topic)="addTopic($event)">
+    </app-new-topic-form>
+
+  </mat-card-content>
+
+</mat-card>

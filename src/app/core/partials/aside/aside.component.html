@@ -1,0 +1,13 @@
+<mat-nav-list style="min-width:160px">
+
+  <a mat-list-item *ngIf="isAuth && user; else:guest" [routerLink]="['/account/' + user.id]">{{ user.pseudo }}</a>
+  <a mat-list-item *ngIf="isAuth && user && user.rank > 1" [routerLink]="['/admin']">Administration</a>
+
+  <ng-template #guest>
+      <a mat-list-item [routerLink]="['/login']">Connexion</a>
+      <a mat-list-item [routerLink]="['/register']">Inscription</a>
+  </ng-template>
+
+  <a mat-list-item [routerLink]="['/forum']">Forums</a>
+
+</mat-nav-list>

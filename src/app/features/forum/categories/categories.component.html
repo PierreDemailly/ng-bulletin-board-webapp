@@ -1,0 +1,11 @@
+
+<mat-card class="mb">
+  <mat-card-title>Liste des catégories</mat-card-title>
+</mat-card>
+
+<app-category-link *ngFor="let category of categories" [category]="category">
+</app-category-link>
+
+<mat-card *ngIf="!(categories?.length > 0)">
+  Aucune catégorie n'existe. Si vous êtes administrateur, créez en une.
+</mat-card>

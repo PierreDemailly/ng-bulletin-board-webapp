@@ -1,0 +1,21 @@
+<app-header></app-header>
+
+<mat-sidenav-container>
+
+  <mat-sidenav #sideNavigation class="side-nav" [mode]="(isMobile || isTablet) ? 'over' : 'side'" [opened]="isDesktop">
+    <app-aside></app-aside>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+
+    <ng-container *ngIf="loading">
+      Chargement...
+    </ng-container>
+
+    <router-outlet *ngIf="!loading"></router-outlet>
+
+    <app-footer class="footer"></app-footer>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

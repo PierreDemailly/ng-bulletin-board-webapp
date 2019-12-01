@@ -1,0 +1,29 @@
+.title {
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(95, 142, 158);
+    text-decoration: underline;
+  }
+}
+
+.category-description {
+  color: rgb(83, 82, 82);
+  font-style: italic;
+}
+
+.item {
+  cursor: pointer;
+
+  &:hover {
+    background: rgb(228, 228, 228);
+  }
+}
+
+.mb {
+  margin-bottom: 10px;
+}
+
+.badge {
+  margin-left: 15px;
+}

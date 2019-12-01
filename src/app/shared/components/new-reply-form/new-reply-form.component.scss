@@ -1,0 +1,15 @@
+.submit-btn {
+  padding: 8px 20px;
+  border-radius: 4px;
+  color: #fff;
+  background: rgb(95, 142, 158);
+  font-size: 18px;
+  margin-top: 8px;
+  cursor: pointer;
+
+  &:active {
+    padding: 7px 19px;
+    margin: 1px;
+    margin-top: 9px;
+  }
+}

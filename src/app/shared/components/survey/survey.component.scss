@@ -1,0 +1,47 @@
+.input {
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 5px;
+  border: 1px solid rgb(180, 165, 165);
+  border-left-width: 3px;
+
+  &:focus {
+    border-color: #c95656;
+  }
+}
+
+.close-icon {
+  float: right;
+  position: relative;
+  bottom: 33px;
+  margin-bottom: -28px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.add-answer {
+  cursor: pointer;
+  font-family: Verdana;
+
+  &:hover {
+    color: #c95656;
+  }
+
+  .add-icon {
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
+    color: #c95656;
+    font-weight: bold;
+    position: relative;
+    top: -2px;
+  }
+}
+
+
+.survey {
+  padding-bottom: 5px;
+  margin-bottom: 12px;
+  border-bottom: 1px dashed rgb(180, 165, 165);
+}

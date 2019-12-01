@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="addTopic()" class="form">
+
+  <mat-form-field class="full-width">
+    <mat-label>Titre du sujet</mat-label>
+    <input matInput formControlName="title">
+  </mat-form-field>
+
+  <br>
+  <button [ngClass]="{'new-topic-sounding': true, 'close': addSurvey }" (click)="toggleSurvey()" type="button">
+    {{ addSurvey ? 'Supprimer le sondage' : 'Ajouter un sondage' }}
+  </button>
+
+  <app-survey *ngIf="addSurvey" (valueChange)="getSurveyValue($event)"></app-survey>
+
+  <p-editor formControlName="content" [style]="{'height':'320px'}">
+    <p-header>
+      <span class="ql-formats">
+        <button class="ql-bold" aria-label="Bold"></button>
+        <button class="ql-italic" aria-label="Italic"></button>
+        <button class="ql-underline" aria-label="Underline"></button>
+        <button class="ql-strike" aria-label="Strike"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-blockquote" aria-label="Blockquote"></button>
+        <button class="ql-code-block" aria-label="Code-block"></button>
+      </span>
+    </p-header>
+  </p-editor>
+
+  <div class="captcha">
+    <ngx-recaptcha2 #captchaElem siteKey="6LfEVroUAAAAAHxhYOsdAdDRo5M-BXhedE7XqINv" [useGlobalDomain]="false"
+      [hl]="fr" formControlName="captcha">
+    </ngx-recaptcha2>
+  </div>
+
+  <button type="submit" class="submit-btn">Valider</button>
+  
+</form>

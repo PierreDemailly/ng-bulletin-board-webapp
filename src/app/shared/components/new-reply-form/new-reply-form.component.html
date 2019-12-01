@@ -1,0 +1,19 @@
+<form [formGroup]="form" (ngSubmit)="emitReply()" class="form">
+
+  <p-editor formControlName="content" [style]="{ height: '120px' }" maximizable="true" [(ngModel)]="content">
+    <p-header>
+      <span class="ql-formats">
+        <button class="ql-bold" aria-label="Bold"></button>
+        <button class="ql-italic" aria-label="Italic"></button>
+        <button class="ql-underline" aria-label="Underline"></button>
+        <button class="ql-strike" aria-label="Strike"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-blockquote" aria-label="Blockquote"></button>
+        <button class="ql-code-block" aria-label="Code-block"></button>
+      </span>
+    </p-header>
+  </p-editor>
+
+  <button type="submit" class="submit-btn">Valider</button>
+</form>

@@ -1,0 +1,43 @@
+<mat-card *ngIf="category">
+
+  <mat-card-title>Modifier une catégorie</mat-card-title>
+
+  <mat-card-content>
+
+    <form [formGroup]="form" (ngSubmit)="edit()" id="editForm">
+
+      <mat-form-field class="full-width">
+        <mat-label>Nom de la catégorie</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Description de la catégorie</mat-label>
+        <input matInput formControlName="description">
+      </mat-form-field>
+
+      <mat-form-field *ngIf="categories" class="full-width">
+        <mat-label>Catégorie parent</mat-label>
+        <mat-select matSelect formControlName="parent" [disabled]="isAncestor">
+          <mat-option *ngFor="let category of categories" value="{{category | toString}}">{{category.name}}</mat-option>
+          <mat-option value="">Pas de parent</mat-option>
+        </mat-select>
+        <mat-hint *ngIf="isAncestor">
+          Cette catégorie possède {{ category.children.length }} categorie(s).
+          Une catégorie qui possède une ou plusieurs catégories ne peut pas appartenir à une autre catégorie.
+        </mat-hint>
+      </mat-form-field>
+
+    </form>
+
+  </mat-card-content>
+
+  <mat-card-actions>
+
+    <button mat-raised-button form="editForm" color="primary">Modifier</button>
+    <button mat-raised-button color="warn" (click)="delete()">Supprimer</button>
+    <button mat-button [routerLink]="['/admin/categories']">Retour</button>
+
+  </mat-card-actions>
+
+</mat-card>

@@ -1,0 +1,36 @@
+.mat-card-form {
+  margin:auto;
+  display:block;
+  padding:10px;
+
+  .full-width {
+    width:100%;
+  }
+
+  .register-actions {
+    margin:0;
+    margin-top:-10px;
+  }
+
+  .register-btn {
+    background: rgb(48, 98, 163);
+    color: #fff;
+  }
+
+  .login-link {
+    color: rgb(48, 98, 163);
+    background: #fff;
+    margin-left: 5px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .back-btn {
+    background: rgb(233, 229, 229);
+    color: rgb(27, 25, 25);
+    float: right;
+    margin-right: 0;
+  }
+}

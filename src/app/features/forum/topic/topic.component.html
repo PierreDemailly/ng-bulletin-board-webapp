@@ -1,0 +1,91 @@
+
+<mat-card class="mb">
+
+  <mat-card-title>
+
+    <app-topic-header [post]="topic"
+                      [allowedReply]="isAuth"
+                      (reply)="handleReply()"
+                      (refresh)="handleRefresh()"
+                      (returnToTopics)="handleReturnToTopics()">
+    </app-topic-header>
+
+  </mat-card-title>
+
+  <mat-card-content>
+
+    <app-created-survey [topic]="topic"
+                        (answer)="handleAnswer($event)"
+                        *ngIf="topic?.survey"
+                        [voteAllowed]="isAuth">
+    </app-created-survey>
+
+  </mat-card-content>
+
+</mat-card>
+
+<mat-card class="mb">
+
+  <mat-card-content>
+
+    <mat-paginator [pageSize]="20"
+                   class="paginator"
+                   [length]="count || 0"
+                   (page)="getPage($event)"
+                   [disabled]="count <= 20">
+    </mat-paginator>
+
+    <app-post *ngIf="page === 1"
+              [post]="topic"
+              [isAuth]="isAuth"
+              (quote)="handleQuote($event)"
+              (blacklistUser)="checkCaptcha('handleBlacklistUser', $event)"
+              (unblacklistUser)="checkCaptcha('handleUnblacklistUser', $event)"
+              (edit)="checkCaptcha('handleEditTopic', $event)">
+    </app-post>
+
+    <ng-container *ngIf="replies">
+      <app-post *ngFor="let reply of replies"
+                [post]="reply"
+                [isAuth]="isAuth"
+                (quote)="handleQuote($event)"
+                (blacklistUser)="checkCaptcha('handleBlacklistUser', $event)"
+                (unblacklistUser)="checkCaptcha('handleUnblacklistUser', $event)"
+                (edit)="checkCaptcha('handleEditReply', $event)">
+      </app-post>
+    </ng-container>
+
+    <mat-paginator [pageSize]="20"
+                   class="paginator"
+                   [length]="count || 0"
+                   (page)="getPage($event)"
+                   [disabled]="count <= 20">
+    </mat-paginator>
+
+  </mat-card-content>
+
+</mat-card>
+
+<mat-card *ngIf="isAuth">
+
+  <mat-card-title>Répondre</mat-card-title>
+
+  <mat-card-content>
+
+    <app-new-reply-form #FormReply
+                        (reply)="checkCaptcha('addReply', $event)"
+                        [quote]="quote">
+    </app-new-reply-form>
+
+  </mat-card-content>
+
+</mat-card>
+
+<!-- one captcha for each events that need anti spam -->
+<ngx-invisible-recaptcha #captchaElem
+                         siteKey="6LfEVroUAAAAAHxhYOsdAdDRo5M-BXhedE7XqINv"
+                         (success)="handleSuccess()"
+                         [useGlobalDomain]="false"
+                         [(ngModel)]="recaptcha"
+                         [ngModelOptions]="{ standalone: true }">
+</ngx-invisible-recaptcha>

@@ -1,0 +1,73 @@
+@import "mat-theme.scss";
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+@include mat-core();
+@include angular-material-theme($my-theme);
+
+body {
+    padding:0;
+    margin:0;
+    font-family: 'Arimo', sans-serif, Arial;
+}
+*:focus {
+  outline:none;
+}
+
+.ql-snow .ql-editor {
+  blockquote {
+    color:rgb(145, 145, 145);
+    background: rgb(243, 243, 243);
+    margin-top:0 !important;
+    margin-bottom:0 !important;
+    padding:2px 0;
+  }
+}
+.link {
+    text-decoration:none;
+    color:rgb(0, 183, 255) !important;
+    cursor:pointer;
+
+    &:hover {
+        color: rgb(5, 151, 209) !important;
+        text-decoration: underline;
+    }
+}
+.link-secondary {
+    text-decoration: none;
+    color:rgb(56, 2, 2) !important;
+    cursor: pointer;
+
+    &:hover {
+        color:rgb(48, 2, 2) !important;
+        text-decoration: underline;
+    }
+}
+
+// snackbar panel classes
+.snackbar-success {
+  background: rgb(235, 252, 236);
+  color: rgb(61, 58, 58);
+  border: 1px solid rgb(189, 243, 189);
+
+  .mat-simple-snackbar-action {
+    color: green;
+  }
+}
+
+.snackbar-warn {
+  background: rgb(255, 224, 224);
+  color: rgb(61, 58, 58);
+  border: 1px solid rgb(187, 97, 97);
+
+  .mat-simple-snackbar-action {
+    color: red;
+  }
+}
+
+
+.captcha {
+  margin: 5px 0;
+}
+
+.rc-anchor-normal-footer, .grecaptcha-logo, .grecaptcha-badge {
+  display: none;
+}

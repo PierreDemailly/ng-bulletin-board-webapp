@@ -1,0 +1,39 @@
+<mat-card *ngIf="user" class="card">
+
+  <mat-card-title>Informations utilisateur</mat-card-title>
+
+  <mat-card-content>
+
+    <mat-list>
+
+      <mat-list-item>
+        <img mat-list-icon src="http://localhost:3000/avatars/{{user.avatar}}">
+        <p mat-line>{{ user.pseudo }}</p>
+        <p mat-line>{{ user.email }}</p>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon mat-list-icon>forum</mat-icon>
+        <p mat-line>{{ user.post_count }} messages postés</p>
+        <p mat-line><strong>Signature dans les forums:</strong></p>
+        <p mat-line>{{ user.signature }}</p>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon mat-list-icon>alarm</mat-icon>
+        <p mat-line><strong>Inscrit le:</strong> {{ user.createdAt }}</p>
+        <p mat-line><strong>Dernier passage:</strong> {{ user.lastActivity }}</p>
+      </mat-list-item>
+
+    </mat-list>
+
+  </mat-card-content>
+
+  <mat-card-actions>
+
+    <button mat-button mat-dialog-close>Fermer</button>
+    <button mat-button mat-raised-button color="primary" (click)="emitEdit(user)">Modifier l'utilisateur</button>
+
+  </mat-card-actions>
+
+</mat-card>

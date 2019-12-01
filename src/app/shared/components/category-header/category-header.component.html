@@ -1,0 +1,34 @@
+<ng-container *ngIf="category">
+
+  <div class="category-header">
+
+    <div class="active-category" (click)="toggleCategories()" (clickOutside)="closeCategories()">
+      {{ category.name }}
+      <mat-icon class="icon" *ngIf="categories?.length > 0">{{ hideCategories ? 'arrow_right' : 'arrow_drop_down' }}</mat-icon>
+    </div>
+
+    <div class="category-filter">
+      <button [ngClass]="{'active': activeFilter === 'latest'}" (click)="setFilter('latest')">Récentes</button>
+      <button [ngClass]="{'active': activeFilter === 'top'}" (click)="setFilter('top')">Top</button>
+      <button (click)="emitCreateTopic()" class="new-topic" *ngIf="allowedToReply">Nouveau sujet</button>
+    </div>
+
+    <div [ngClass]="{'choose-category': true, 'hidden': hideCategories}">
+
+      <div *ngFor="let category of categories" class="category">
+
+        <div class="category-name" (click)="redirectCategory(category)">
+          {{ category.name }}
+        </div>
+
+        <div class="category-description">
+          {{ category.description }}
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ng-container>
