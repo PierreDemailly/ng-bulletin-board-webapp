@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: '@core/layouts/default/default.module#DefaultModule',
+    loadChildren: () => import('@core/layouts/default/default.module').then(m => m.DefaultModule),
   },
   {
     path: '**',

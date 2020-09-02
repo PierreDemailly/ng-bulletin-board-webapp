@@ -16,24 +16,24 @@ const routes: Routes = [
       },
       {
         path: 'login',
-        loadChildren: '@core/pages/login/login.module#LoginModule',
+        loadChildren: () => import('@core/pages/login/login.module').then(m => m.LoginModule),
       },
       {
         path: 'register',
-        loadChildren: '@core/pages/register/register.module#RegisterModule',
+        loadChildren: () => import('@core/pages/register/register.module').then(m => m.RegisterModule),
       },
       {
         path: 'forums',
-        loadChildren: '@features/forum/forum.module#ForumModule',
+        loadChildren: () => import('@features/forum/forum.module').then(m => m.ForumModule),
       },
       {
         path: 'admin',
-        loadChildren: '@features/admin/admin.module#AdminModule',
+        loadChildren: () => import('@features/admin/admin.module').then(m => m.AdminModule),
         canActivate: [AdminGuard],
       },
       {
         path: 'account',
-        loadChildren: '@features/account/account.module#AccountModule',
+        loadChildren: () => import('@features/account/account.module').then(m => m.AccountModule),
       },
     ],
   },
