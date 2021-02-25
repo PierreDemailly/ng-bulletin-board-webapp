@@ -336,7 +336,7 @@ export class TopicComponent implements OnInit, OnDestroy {
       this.getReplies();
     } catch (e) {
       // notify
-      this.alertService.warn('Erreur lors de la modification du post, veuillez réessayer');
+      this.alertService.warn('Could not edit post. Please try again');
       throw new Error(e);
     }
   }
