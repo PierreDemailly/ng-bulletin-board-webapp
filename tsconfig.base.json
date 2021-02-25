@@ -9,7 +9,8 @@
       "@interfaces/*": ["app/shared/interfaces/*"],
       "@env/*": ["environments/*"],
       "@features/*": ["app/features/*"],
-      "@core/*": ["app/core/*"]
+      "@core/*": ["app/core/*"],
+      "primeng-lts/*": ["node_modules/primeng-lts/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
