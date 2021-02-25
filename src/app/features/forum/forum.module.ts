@@ -21,7 +21,7 @@ import { ForumRoutingModule } from './forum-routing.module';
 import { TopicComponent } from './topic/topic.component';
 
 import { ClickOutsideModule } from 'ng-click-outside';
-import { EditorModule } from 'primeng/editor';
+import { EditorModule } from 'primeng-lts/editor';
 
 @NgModule({
   declarations: [

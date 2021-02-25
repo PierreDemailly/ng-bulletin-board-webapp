@@ -6,7 +6,7 @@
          class="input">
 
   <div formArrayName="answers"
-       *ngFor="let answer of form.get('answers').controls; let i = index">
+       *ngFor="let answer of answers.controls; let i = index">
 
     <ng-container [formGroupName]="i">
       <input type="text"

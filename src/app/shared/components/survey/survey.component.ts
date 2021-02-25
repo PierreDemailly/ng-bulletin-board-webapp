@@ -28,6 +28,10 @@ export class SurveyComponent implements OnInit, OnDestroy {
    */
   @Output() valueChange = new EventEmitter<Survey>();
 
+  get answers(): FormGroup {
+    return this.form.get('answers') as FormGroup;
+  }
+
   /**
    * Creates an instance of SurveyComponent.
    */

@@ -3,7 +3,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import localeFr from '@angular/common/locales/fr';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatPaginatorIntl } from '@angular/material';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -58,7 +58,6 @@ const getPaginatorIntl = () => {
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SharedModule,
   ],
   providers: [
     HttpClientModule,

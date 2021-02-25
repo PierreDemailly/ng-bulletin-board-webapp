@@ -6,7 +6,7 @@ import { Component,
          ViewChild,
          ViewChildren,
         } from '@angular/core';
-import { MatPaginator } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Answer } from '@interfaces/answer';
@@ -80,6 +80,10 @@ export class TopicComponent implements OnInit, OnDestroy {
    * Used to collect subscriptions and prevent memory leaks.
    */
   scavenger = new Scavenger(this);
+  /**
+   * TODO: debug
+   */
+  recaptcha: any;
   /**
    * Reply form reference.
    */

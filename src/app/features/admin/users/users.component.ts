@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog, MatPaginator } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 
 import { MatPaginationChangeEvent } from '@interfaces/mat-pagination-change-event';
