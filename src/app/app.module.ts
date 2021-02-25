@@ -58,6 +58,7 @@ const getPaginatorIntl = () => {
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    SharedModule,
   ],
   providers: [
     HttpClientModule,
