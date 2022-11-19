@@ -6,7 +6,7 @@ import { Component,
          ViewChild,
          ViewChildren,
         } from '@angular/core';
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Answer } from '@interfaces/answer';
@@ -21,7 +21,6 @@ import { RepliesService } from '@services/replies.service';
 import { TopicsService } from '@services/topics.service';
 import { UserService } from '@services/user.service';
 
-import { Scavenger } from '@wishtack/rx-scavenger';
 import { InvisibleReCaptchaComponent } from 'ngx-captcha';
 
 /**
@@ -76,10 +75,6 @@ export class TopicComponent implements OnInit, OnDestroy {
    * after reCaptcha success.
    */
   lastAction: { method: string, args: any };
-  /**
-   * Used to collect subscriptions and prevent memory leaks.
-   */
-  scavenger = new Scavenger(this);
   /**
    * TODO: debug
    */
@@ -157,9 +152,7 @@ export class TopicComponent implements OnInit, OnDestroy {
 
     this.isAuth = this.authService.isLoggedIn();
 
-    this.userService.getCurrentUser().pipe(
-      this.scavenger.collect(),
-    ).subscribe((user) => {
+    this.userService.getCurrentUser().subscribe((user) => {
       this.user = user;
     });
   }

@@ -8,8 +8,8 @@ import { SettingsService } from '@services/settings.service';
 import { SidenavService } from '@services/sidenav.service';
 import { UserService } from '@services/user.service';
 
-import { Scavenger } from '@wishtack/rx-scavenger';
 import { finalize } from 'rxjs/internal/operators/finalize';
+import { Subject } from 'rxjs/internal/Subject';
 
 /**
  * Header component of the app.
@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   /**
    * Used to collect subscriptions and prevent memory leaks.
    */
-  scavenger = new Scavenger(this);
+  scavenger = new Subject();
   /**
    * The current page user is located.
    *
@@ -86,7 +86,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
    */
   initialize(): void {
     this.userService.getCurrentUser().pipe(
-      this.scavenger.collect(),
       finalize(() => {
         // when subject complete (after logout)
         delete this.user;
@@ -98,19 +97,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
 
     this.sidenavService.opened().pipe(
-      this.scavenger.collect(),
     ).subscribe((value) => {
       this.sidenavOpened = value;
     });
 
     this.navigationService.getCurrentPage().pipe(
-      this.scavenger.collect(),
     ).subscribe((page) => {
       this.currentPage = page;
     });
 
     this.settingsService.getSettings().pipe(
-      this.scavenger.collect(),
     ).subscribe((settings) => {
       // only need sitename setting
       this.sitename = settings.find((s) => s.name === 'sitename').value;

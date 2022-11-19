@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Scavenger } from '@wishtack/rx-scavenger';
 
 import { Post } from '@interfaces/post';
 import { User } from '@interfaces/user';
 import { UserService } from '@services/user.service';
+import { Subject } from 'rxjs/internal/Subject';
 
 /**
  * Post component.
@@ -48,7 +48,7 @@ export class PostComponent implements OnDestroy {
   /**
    * Used to collect subscriptions and prevent memory leaks.
    */
-  scavenger = new Scavenger(this);
+  scavenger = new Subject();
   /**
    * Post to display.
    */
@@ -105,7 +105,10 @@ export class PostComponent implements OnDestroy {
    *
    * This component implements ngOnDestroy for scavenger.
    */
-  ngOnDestroy() { }
+  ngOnDestroy() {
+    this.scavenger.complete();
+    this.scavenger.unsubscribe();
+  }
 
   /**
    * Build the form with FormBuidler.
@@ -120,9 +123,7 @@ export class PostComponent implements OnDestroy {
    * Subscribes to current user.
    */
   getCurrentUser(): void {
-    this.userService.getCurrentUser().pipe(
-      this.scavenger.collect(),
-    ).subscribe((user) => {
+    this.userService.getCurrentUser().subscribe((user) => {
       this.currentUser = user;
     });
   }

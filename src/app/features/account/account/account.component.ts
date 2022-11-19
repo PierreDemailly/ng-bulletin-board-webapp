@@ -4,8 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '@interfaces/user';
 import { AlertService } from '@services/alert.service';
 import { UserService } from '@services/user.service';
-
-import { Scavenger } from '@wishtack/rx-scavenger';
+import { Subject } from 'rxjs/internal/Subject';
 
 /**
  * Account component.
@@ -29,7 +28,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   /**
    * Used to collect subscriptions and prevent memory leaks.
    */
-  scavenger = new Scavenger(this);
+  scavenger = new Subject();
 
   /**
    * Creates an instance of AccountComponent.
@@ -64,7 +63,6 @@ export class AccountComponent implements OnInit, OnDestroy {
    */
   async initialize(): Promise<void> {
     this.userService.getCurrentUser().pipe(
-      this.scavenger.collect(),
     ).subscribe((user) => {
       this.currentUser = user;
     });

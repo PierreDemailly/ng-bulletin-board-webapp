@@ -9,9 +9,9 @@ import { SettingsService } from '@services/settings.service';
 import { SidenavService } from '@services/sidenav.service';
 import { UserService } from '@services/user.service';
 
-import { Scavenger } from '@wishtack/rx-scavenger';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { filter } from 'rxjs/operators';
+import { Subject } from 'rxjs/internal/Subject';
+import { filter, takeUntil } from 'rxjs/operators';
 
 /**
  * Default layout.
@@ -44,7 +44,7 @@ export class DefaultLayoutComponent implements OnInit, AfterViewInit, OnDestroy 
   /**
    * Used to collect subscriptions and prevent memory leaks.
    */
-  scavenger = new Scavenger(this);
+  scavenger = new Subject();
   /**
    * Reference to the sidenav.
    */
@@ -86,7 +86,10 @@ export class DefaultLayoutComponent implements OnInit, AfterViewInit, OnDestroy 
    *
    * This component implements ngOnDestroy for scavenger.
    */
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.scavenger.complete();
+    this.scavenger.unsubscribe();
+  }
 
   /**
    * Init method of the component.
@@ -126,7 +129,7 @@ export class DefaultLayoutComponent implements OnInit, AfterViewInit, OnDestroy 
 
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
-      this.scavenger.collect(),
+      takeUntil(this.scavenger),
     ).subscribe((event: NavigationEnd) => {
       this.navigationService.setCurrentPage(event.url);
     });

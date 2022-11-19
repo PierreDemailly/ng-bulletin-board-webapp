@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Scavenger } from '@wishtack/rx-scavenger';
 
 import { Survey } from '@interfaces/survey';
+import { Subject } from 'rxjs/internal/Subject';
 
 /**
  * Survey component.
@@ -22,7 +22,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
   /**
    * Used to collect subscriptions and prevent memory leaks.
    */
-  scavenger = new Scavenger(this);
+  scavenger = new Subject();
   /**
    * Event sent anytime form values change.
    */

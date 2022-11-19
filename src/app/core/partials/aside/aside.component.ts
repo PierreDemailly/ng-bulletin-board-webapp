@@ -3,8 +3,8 @@ import { UserService } from '@services/user.service';
 
 import { User } from '@interfaces/user';
 import { AuthService } from '@services/auth.service';
-import { Scavenger } from '@wishtack/rx-scavenger';
-import { finalize } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs/internal/Subject';
 
 /**
  * Aside component.
@@ -28,7 +28,7 @@ export class AsideComponent implements OnInit, OnDestroy {
   /**
    * Used to collect subscriptions and prevent memory leaks.
    */
-  scavenger = new Scavenger(this);
+  scavenger = new Subject();
 
   /**
    * Creates an instance of AsideComponent.
@@ -44,12 +44,12 @@ export class AsideComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.userService.getCurrentUser().pipe(
-      this.scavenger.collect(),
       finalize(() => {
         // when subject complete (after logout)
         delete this.user;
         this.isAuth = false;
       }),
+      takeUntil(this.scavenger)
     ).subscribe((user) => {
       this.user = user;
       this.isAuth = this.authService.isLoggedIn();
@@ -62,5 +62,8 @@ export class AsideComponent implements OnInit, OnDestroy {
    *
    * This component implements ngOnDestroy for scavenger.
    */
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.scavenger.complete();
+    this.scavenger.unsubscribe();
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 
 import { MatPaginationChangeEvent } from '@interfaces/mat-pagination-change-event';
@@ -9,8 +9,7 @@ import { User } from '@interfaces/user';
 import { AlertService } from '@services/alert.service';
 import { UserService } from '@services/user.service';
 import { DialogUserDetailsComponent } from '@shared/components/dialog-user-details/dialog-user-details.component';
-
-import { Scavenger } from '@wishtack/rx-scavenger';
+import { Subject } from 'rxjs/internal/Subject';
 
 /**
  * Admin users component.
@@ -54,7 +53,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * Used to collect subscriptions and prevent memory leaks.
    */
-  scavenger = new Scavenger(this);
+  scavenger = new Subject();
   /**
    * Both (top & bottom) mat-paginators references.
    */
@@ -164,7 +163,6 @@ export class UsersComponent implements OnInit, OnDestroy {
     instance.user = user;
     // subscribe to edit @Output()
     instance.edit.pipe(
-      this.scavenger.collect(),
     ).subscribe(() => {
       this.router.navigateByUrl(`/admin/users/edit/${user.id}`);
       dialogRef.close();

@@ -20,7 +20,6 @@ import { CategoryComponent } from './category/category.component';
 import { ForumRoutingModule } from './forum-routing.module';
 import { TopicComponent } from './topic/topic.component';
 
-import { ClickOutsideModule } from 'ng-click-outside';
 import { EditorModule } from 'primeng-lts/editor';
 
 @NgModule({
@@ -48,7 +47,6 @@ import { EditorModule } from 'primeng-lts/editor';
     HeaderModule,
     SharedModule,
     EditorModule,
-    ClickOutsideModule,
   ],
 })
 export class ForumModule { }

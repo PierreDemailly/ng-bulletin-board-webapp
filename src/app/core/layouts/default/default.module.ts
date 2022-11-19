@@ -9,17 +9,17 @@ import { AdminGuard } from '@guards/admin.guard';
 import { SharedModule } from '@shared/shared.module';
 import { DefaultLayoutComponent } from './default-layout.component';
 
-import { DeviceDetectorModule } from 'ngx-device-detector';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [DefaultLayoutComponent, AsideComponent],
   imports: [
     CommonModule,
     DefaultRoutingModule,
+    RouterModule,
     HeaderModule,
     FooterModule,
     SharedModule,
-    DeviceDetectorModule.forRoot(),
   ],
   providers: [
     AdminGuard,

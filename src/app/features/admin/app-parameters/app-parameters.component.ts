@@ -5,8 +5,8 @@ import { Setting } from '@interfaces/setting';
 import { AlertService } from '@services/alert.service';
 import { SettingsService } from '@services/settings.service';
 
-import { Scavenger } from '@wishtack/rx-scavenger';
 import { ReCaptcha2Component } from 'ngx-captcha';
+import { Subject } from 'rxjs/internal/Subject';
 
 /**
  * App parameters component.
@@ -30,7 +30,7 @@ export class AppParametersComponent implements OnInit, OnDestroy {
   /**
    * Used to collect subscriptions and prevent memory leaks.
    */
-  scavenger = new Scavenger(this);
+  scavenger = new Subject();
   /**
    * ReCaptcha reference.
    */
@@ -68,7 +68,6 @@ export class AppParametersComponent implements OnInit, OnDestroy {
    */
   initialize(): void {
     this.settingsService.getSettings().pipe(
-      this.scavenger.collect(),
     ).subscribe((settings) => {
       this.settings = settings;
       // build form with settings default values
