@@ -6,7 +6,7 @@ import { Component,
          ViewChild,
          ViewChildren,
         } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Answer } from '@interfaces/answer';
