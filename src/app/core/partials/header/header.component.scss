@@ -10,11 +10,10 @@
   }
 
   .avatar {
-    height:40px;
-    width:40px;
+    height:30px;
+    width:30px;
     border-radius:50%;
-    margin-right:5px;
-    margin-bottom:2px;
+    vertical-align: middle;
   }
 
   span {
@@ -23,6 +22,10 @@
     .btn {
       margin-right:40px;
       font-size:17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
     }
   }
 
