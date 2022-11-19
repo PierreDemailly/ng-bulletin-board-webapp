@@ -1,108 +1,17 @@
 @use '@angular/material' as mat;
-$custom_primary: (
-    50 : #e8eef6,
-    100 : #c5d4e8,
-    200 : #9eb8d9,
-    300 : #779bc9,
-    400 : #5a85be,
-    500 : #3d70b2,
-    600 : #3768ab,
-    700 : #2f5da2,
-    800 : #275399,
-    900 : #1a418a,
-    A100 : #c2d5ff,
-    A200 : #8fb3ff,
-    A400 : #5c90ff,
-    A700 : #427eff,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #ffffff,
-        500 : #ffffff,
-        600 : #ffffff,
-        700 : #ffffff,
-        800 : #ffffff,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #ffffff,
-    )
-);
-$custom_accent: (
-    50 : #fbe3e6,
-    100 : #f6bac0,
-    200 : #f08c96,
-    300 : #e95d6c,
-    400 : #e53b4d,
-    500 : #e0182d,
-    600 : #dc1528,
-    700 : #d81122,
-    800 : #d30e1c,
-    900 : #cb0811,
-    A100 : #fff5f5,
-    A200 : #ffc2c3,
-    A400 : #ff8f92,
-    A700 : #ff7579,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #ffffff,
-        500 : #ffffff,
-        600 : #ffffff,
-        700 : #ffffff,
-        800 : #ffffff,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
-    )
-);
-$custom_warn: (
-    50 : #fdf8e0,
-    100 : #faecb3,
-    200 : #f7e080,
-    300 : #f4d44d,
-    400 : #f1ca26,
-    500 : #efc100,
-    600 : #edbb00,
-    700 : #ebb300,
-    800 : #e8ab00,
-    900 : #e49e00,
-    A100 : #ffffff,
-    A200 : #fff1d8,
-    A400 : #ffe0a5,
-    A700 : #ffd78b,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #000000,
-        500 : #000000,
-        600 : #000000,
-        700 : #000000,
-        800 : #000000,
-        900 : #000000,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
-    )
-);
 
+@include mat.core();
 
+$my-primary: mat.define-palette(mat.$indigo-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
-$my-theme-primary: mat.define-palette($custom_primary);
-$my-theme-accent : mat.define-palette($custom_accent);
-$my-theme-warn   : mat.define-palette($custom_warn);
-$my-theme: mat.define-light-theme(
-    $my-theme-primary,
-    $my-theme-accent,
-    $my-theme-warn
-);
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+@include mat.all-component-themes($my-theme);
