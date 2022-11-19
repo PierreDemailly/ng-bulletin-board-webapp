@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 $custom_primary: (
     50 : #e8eef6,
     100 : #c5d4e8,
@@ -98,10 +98,10 @@ $custom_warn: (
 
 
 
-$my-theme-primary: mat-palette($custom_primary);
-$my-theme-accent : mat-palette($custom_accent);
-$my-theme-warn   : mat-palette($custom_warn);
-$my-theme: mat-light-theme(
+$my-theme-primary: mat.define-palette($custom_primary);
+$my-theme-accent : mat.define-palette($custom_accent);
+$my-theme-warn   : mat.define-palette($custom_warn);
+$my-theme: mat.define-light-theme(
     $my-theme-primary,
     $my-theme-accent,
     $my-theme-warn
