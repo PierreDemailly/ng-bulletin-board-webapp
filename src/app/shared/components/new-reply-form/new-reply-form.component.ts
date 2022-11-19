@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Reply } from '@interfaces/reply';
 import { Topic } from '@shared/interfaces/topic';
@@ -19,7 +19,7 @@ export class NewReplyFormComponent {
   /**
    * Reply form.
    */
-  form: FormGroup;
+  form: UntypedFormGroup;
   /**
    * Editor content (ngModel).
    */
@@ -56,7 +56,7 @@ export class NewReplyFormComponent {
   /**
    * Creates an instance of NewReplyFormComponent.
    */
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: UntypedFormBuilder) {
     this.buildForm();
   }
 

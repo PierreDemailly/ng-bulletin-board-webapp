@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from '@interfaces/user';
@@ -24,7 +24,7 @@ export class EditUserComponent implements OnInit {
   /**
    * User form.
    */
-  form: FormGroup;
+  form: UntypedFormGroup;
   /**
    * User to edit.
    */
@@ -37,7 +37,7 @@ export class EditUserComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private alertService: AlertService,
   ) { }
 

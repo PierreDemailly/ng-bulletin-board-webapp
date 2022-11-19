@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Survey } from '@interfaces/survey';
 import { Topic } from '@interfaces/topic';
@@ -23,7 +23,7 @@ export class NewTopicFormComponent implements OnInit {
   /**
    * Topic form.
    */
-  form: FormGroup;
+  form: UntypedFormGroup;
   /**
    * Whether user wanna add survey or not.
    */
@@ -45,7 +45,7 @@ export class NewTopicFormComponent implements OnInit {
    * Creates an instance of NewTopicFormComponent.
    */
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private alertService: AlertService,
   ) { }
 

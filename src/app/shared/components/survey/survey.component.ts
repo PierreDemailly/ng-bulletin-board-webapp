@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Scavenger } from '@wishtack/rx-scavenger';
 
 import { Survey } from '@interfaces/survey';
@@ -18,7 +18,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
   /**
    * Survey form.
    */
-  form: FormGroup;
+  form: UntypedFormGroup;
   /**
    * Used to collect subscriptions and prevent memory leaks.
    */
@@ -28,14 +28,14 @@ export class SurveyComponent implements OnInit, OnDestroy {
    */
   @Output() valueChange = new EventEmitter<Survey>();
 
-  get answers(): FormGroup {
-    return this.form.get('answers') as FormGroup;
+  get answers(): UntypedFormGroup {
+    return this.form.get('answers') as UntypedFormGroup;
   }
 
   /**
    * Creates an instance of SurveyComponent.
    */
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: UntypedFormBuilder) {
     this.buildForm();
   }
 
@@ -74,7 +74,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
    * Add answer input, max 10.
    */
   addAnswer(): void {
-    const answers = this.form.get('answers') as FormArray;
+    const answers = this.form.get('answers') as UntypedFormArray;
     answers.push(this.formBuilder.group({
       answer: [null, Validators.required],
     }));
@@ -84,7 +84,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
    * Remove answer input, min 2.
    */
   removeAnswer(index: number): void {
-    const answers = this.form.get('answers') as FormArray;
+    const answers = this.form.get('answers') as UntypedFormArray;
     answers.removeAt(index);
   }
 }

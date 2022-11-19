@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Scavenger } from '@wishtack/rx-scavenger';
 
@@ -40,7 +40,7 @@ export class PostComponent implements OnDestroy {
   /**
    * Edit post form.
    */
-  form: FormGroup;
+  form: UntypedFormGroup;
   /**
    * Whether user is edditing the post.
    */
@@ -94,7 +94,7 @@ export class PostComponent implements OnDestroy {
   constructor(
     private router: Router,
     private userService: UserService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
   ) {
     this.buildForm();
   }

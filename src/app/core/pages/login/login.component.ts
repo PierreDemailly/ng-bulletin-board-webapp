@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from '@interfaces/user';
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   /**
    * Login form.
    */
-  form: FormGroup;
+  form: UntypedFormGroup;
   /**
    * Url the user come from.
    */
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
    * Creates an instance of LoginComponent.
    */
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private authService: AuthService,
     private route: ActivatedRoute,

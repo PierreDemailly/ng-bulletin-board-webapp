@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Category } from '@interfaces/category';
@@ -25,7 +25,7 @@ export class EditCategoryComponent implements OnInit {
   /**
    * Category form.
    */
-  form: FormGroup;
+  form: UntypedFormGroup;
   /**
    * Category to edit.
    */
@@ -43,7 +43,7 @@ export class EditCategoryComponent implements OnInit {
    * Creates an instance of EditCategoriesComponent.
    */
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private categoriesService: CategoriesService,

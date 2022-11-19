@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Category } from '@interfaces/category';
@@ -20,7 +20,7 @@ export class NewCategoryComponent implements OnInit {
   /**
    * Category form.
    */
-  form: FormGroup;
+  form: UntypedFormGroup;
   /**
    * All root categories that may become the category ancestor.
    */
@@ -31,7 +31,7 @@ export class NewCategoryComponent implements OnInit {
    */
   constructor(
     private categoriesService: CategoriesService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private alertService: AlertService,
   ) { }

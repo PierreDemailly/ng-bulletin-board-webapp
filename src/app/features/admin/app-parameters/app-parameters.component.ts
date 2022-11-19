@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Setting } from '@interfaces/setting';
 import { AlertService } from '@services/alert.service';
@@ -22,7 +22,7 @@ export class AppParametersComponent implements OnInit, OnDestroy {
   /**
    * Parameters form.
    */
-  form: FormGroup;
+  form: UntypedFormGroup;
   /**
    * Settings of the app.
    */
@@ -40,7 +40,7 @@ export class AppParametersComponent implements OnInit, OnDestroy {
    * Creates an instance of AppParametersComponent.
    */
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private settingsService: SettingsService,
     private alertService: AlertService,
   ) { }

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
@@ -27,7 +27,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * Search user form.
    */
-  form: FormGroup;
+  form: UntypedFormGroup;
   /**
    * The mat-table columns.
    */
@@ -64,7 +64,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    * Creates an instance of UsersComponent.
    */
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private userService: UserService,
     private dialog: MatDialog,
     private router: Router,

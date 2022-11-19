@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from '@interfaces/user';
@@ -27,7 +27,7 @@ export class AccountEditComponent implements OnInit, OnDestroy {
   /**
    * User form.
    */
-  form: FormGroup;
+  form: UntypedFormGroup;
   /**
    * User to edit.
    */
@@ -50,7 +50,7 @@ export class AccountEditComponent implements OnInit, OnDestroy {
    */
   constructor(
     private userService: UserService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private fileUploadService: FileUploadService,

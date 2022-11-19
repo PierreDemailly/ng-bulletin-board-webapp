@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from '@interfaces/user';
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   /**
    * Register form.
    */
-  form: FormGroup;
+  form: UntypedFormGroup;
   /**
    * Url the user come from.
    */
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
    */
   constructor(
     private userService: UserService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
